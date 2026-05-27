@@ -19,7 +19,7 @@ RUN npm install
 EXPOSE 3000 
 
 # Copies entrypoint script into container root filesystem.
-COPY entrypoint.sh /entrypoint.sh
+COPY ./.cicd/entrypoint.sh /entrypoint.sh
 
 # make the entrypoint.sh script executable
 RUN chmod +x /entrypoint.sh
