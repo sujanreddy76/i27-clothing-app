@@ -20,9 +20,12 @@ spec:
         image: DIT # Replace with your docker image name 
         ports:
         - containerPort: 3000
-        command: ["/entrypoint.sh"]
-        args: ["dev"]
-        env:
+       # The below command and args OVERRIDE Dockerfile CMD. So Kubernetes starts container as: /entrypoint.sh dev
+        command: ["/entrypoint.sh"] #executable to run
+        args: ["dev"] # # Passed as argument to executable or Dockerfile CMD
+        # Environment variable passed inside the container
+        # Accessible in application/scripts as ENVIRONMENT=dev then script(entrypoint.sh) should be ENVIRONMENT="${ENVIRONMENT:-dev}"
+        env: # environment variables inside container
         - name: ENVIRONMENT
           value: "dev"
 ---
