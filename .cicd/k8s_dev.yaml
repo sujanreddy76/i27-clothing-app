@@ -43,4 +43,36 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 3000
-  type: NodePort
+  # type: NodePort
+---
+# Create a ingress controller
+# L7 load balancer
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata: 
+  name: prod-ingress
+  namespace: cart-dev-ns
+  annotations:
+    networking.gke.io/managed-certificates: "sujanreddy"
+spec:
+  rules:
+  - host: sujanreddy.in 
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: i27-clothing-dev
+            port:
+              number: 80
+  - host: prod.sujanreddy.in 
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: i27-clothing-dev
+            port:
+              number: 80                    
