@@ -52,8 +52,8 @@ kind: Ingress
 metadata: 
   name: prod-ingress
   namespace: cart-dev-ns
-  annotations:
-    networking.gke.io/managed-certificates: "sujanreddy"
+  # annotations:
+  #   networking.gke.io/managed-certificates: "sujanreddy"
 spec:
   rules:
   - host: sujanreddy.in 
